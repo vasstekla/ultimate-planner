@@ -4,7 +4,11 @@ export const daysOfTheWeek = [
     'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'
 ]
 
-export const categories = {
+export const categories = [
+    'School', 'Work', 'Personal'
+]
+
+export const categoriesColor = {
     'School': 'red',
     'Work': 'blue',
     'Personal': 'green'
