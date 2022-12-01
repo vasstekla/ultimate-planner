@@ -14,14 +14,16 @@ interface TaskModalProps {
 export default function TaskModal(props: TaskModalProps) {
     const { onSubmit, isOpen, updateIsOpen, task, submitMessage } = props
 
-    const [open, setOpen] = useState(isOpen);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
     const [newTask, setNewTask] = useState(task)
     const [changedInside, setChangedInside] = useState(false)
+    const [open, setOpen] = useState(isOpen);
+    const handleClose = () => {
+        setOpen(false)
+        updateIsOpen(false)
+    }
 
     useEffect(() => {
-        if (isOpen !== open) {
+        if (isOpen !== open && !changedInside) {
             setOpen(isOpen)
         }
         if (task !== newTask && !changedInside) {
@@ -35,6 +37,7 @@ export default function TaskModal(props: TaskModalProps) {
         onSubmit(task)
         setOpen(false)
         updateIsOpen(false)
+        setChangedInside(false)
     }
 
     const style = {

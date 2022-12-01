@@ -8,7 +8,8 @@ import { useState } from "react";
 
 interface TaskContainerProps {
     task: ITask,
-    onTaskDelete: Function
+    onTaskDelete: Function,
+    onTaskClick: Function
 }
 
 const statuses = {
@@ -18,7 +19,7 @@ const statuses = {
 }
 
 export default function Task(props: TaskContainerProps) {
-    const { task, onTaskDelete } = props
+    const { task, onTaskDelete, onTaskClick } = props
     let [currTask, setCurrTask] = useState(task)
 
     let onChangeStatus = (newStatus: string) => {
@@ -31,7 +32,7 @@ export default function Task(props: TaskContainerProps) {
     return (
         <Grid key={task.id} item xs>
             <Card sx={{ minWidth: 275 }} style={{ 'backgroundColor': statuses[currTask.status as keyof typeof statuses] }}>
-                <CardContent>
+                <CardContent onClick={() => onTaskClick(task)}>
                     <Typography variant="h6" component="div">
                         {task.name}
                     </Typography>

@@ -44,6 +44,11 @@ export default function TaskContainer() {
     setOpenCreate(open)
   }
 
+  const onTaskClick = (task: ITask) => {
+    setOpenUpdate(true)
+    setTask(task)
+  }
+
   return (
     <>
       <Box sx={{ width: '100%' }}>
@@ -57,10 +62,10 @@ export default function TaskContainer() {
               </Paper>
               <Box sx={{ width: '100%' }}>
                 <Grid container style={{ 'flexDirection': 'column' }}>
-                  {tasksList.filter(task => task.day === days).map(task =>
-                    <div onClick={() => { onOpenUpdate(true); setTask(task) }}>
-                      <Task key={task.id} task={task} onTaskDelete={taskDelete} />
-                    </div>
+                  {tasksList.filter(taskListItem => taskListItem.day === days).map(taskListItem =>
+                    <>
+                      <Task key={taskListItem.id} task={taskListItem} onTaskDelete={taskDelete} onTaskClick={onTaskClick} />
+                    </>
                   )}
                 </Grid>
               </Box>
